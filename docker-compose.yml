@@ -1,0 +1,19 @@
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql_apirest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: apirest
+    ports:
+      - "3306:3306"
+
+  apirest:
+    build: .
+    container_name: spring_apirest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
